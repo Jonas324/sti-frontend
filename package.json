@@ -1,0 +1,25 @@
+{
+  "name": "sti-frontend",
+  "version": "1.0.0",
+  "description": "jsfrontend",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Juliosc1/sti-frontend.git"
+  },
+  "author": "julio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Juliosc1/sti-frontend/issues"
+  },
+  "homepage": "https://github.com/Juliosc1/sti-frontend#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "healthcheck": "^0.1.3",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.5.0"
+  }
+}
