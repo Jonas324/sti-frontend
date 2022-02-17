@@ -14,5 +14,5 @@ app.get('/', function(req, res){
 })
 
 app.listen(PORT, function(){
-    console.log('Server stated on port ${PORT}')
+    console.log(`Server stated on port ${PORT}`)
 })
