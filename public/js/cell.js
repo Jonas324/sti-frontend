@@ -45,7 +45,7 @@ function nextGen(grid) {
                     if(x_cell >= 0 && y_cell >= 0 && x_cell < COLS && y_cell < ROWS) {
                         const currentNeighbour = grid[col + i][row + j];
                         numNeighbours += currentNeighbour;
-
+                    
                     }
                 }
             }
@@ -69,7 +69,7 @@ function render(grid) {
 
             ctx.beginPath();
             ctx.rect(col * resolution, row * resolution, resolution, resolution);
-            ctx.fillStyle = cell ? 'blue' : 'lightblue'
+            ctx.fillStyle = cell ? 'black' : 'white'
             ctx.fill();
             ctx.stroke();
         }
