@@ -33,6 +33,7 @@ function nextGen(grid){
     xhr.send(grid)
   }
 
+
 function nextGenSub(grid) {
     const nextGen = grid.map(arr => [...arr]);
 
