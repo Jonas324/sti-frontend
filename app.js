@@ -13,12 +13,14 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + "/public/index.html")
 })
 
-app.post('/nextGen', function(req, res){
-    console.log(request.body)
-    res.set('Content-Type', 'application/json')
-    //res.status(200).send(request.body)
-    res.status(200).send(nextGen(request.body));
-})
+app.post("/nextGeneration", function (req ,res){
+    console.log("hello")
+    headers={"http_status":200, "cache-control":  "no-cache"}
+    body= nextGen(grid);
+    
+    res.set('Content-Type', 'application/json');
+    res.status(200).send(body)
+ })
 
 app.listen(PORT, function(){
     console.log(`Server stated on port ${PORT}`)

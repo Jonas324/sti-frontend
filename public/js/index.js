@@ -1,6 +1,6 @@
 function age(){
   var xhr = new XMLHttpRequest()
-  xhr.open("GET", "http://localhost:3001/cell")
+  xhr.open("POST", "http://localhost:3000/app")
   xhr.onload = function(){
     var data = JSON.parse(this.response)
     createTable(data)

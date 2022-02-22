@@ -3,8 +3,8 @@ const ctx = canvas.getContext('2d');
 
 const resolution = 10;
 
-canvas.width = 800;
-canvas.height = 800;
+canvas.width = 1520;
+canvas.height = 720;
 
 const COLS = canvas.width / resolution;
 const ROWS = canvas.height / resolution;
@@ -21,13 +21,19 @@ requestAnimationFrame(update);
 
 function update() {
 
-    grid = nextGen(grid)
     render(grid);
+    grid = nextGenSub(grid)
     requestAnimationFrame(update);
 
 }
 
-function nextGen(grid) {
+function nextGen(grid){
+    var xhr = new XMLHttpRequest()
+    xhr.open("POST", "http://localhost:3000/nextGeneration")
+    xhr.send(grid)
+  }
+
+function nextGenSub(grid) {
     const nextGen = grid.map(arr => [...arr]);
 
     for (let col = 0; col < grid.length; col++) {
@@ -68,10 +74,10 @@ function render(grid) {
             const cell = grid[col][row];
 
             ctx.beginPath();
-            ctx.rect(col * resolution, row * resolution, resolution, resolution);
-            ctx.fillStyle = cell ? 'black' : 'white'
+            //ctx.fillRect(col * resolution, row * resolution, resolution, resolution);
+            ctx.arc(col * resolution, row * resolution, resolution / 2, 0, 2*Math.PI);
+            ctx.fillStyle = cell ? 'blue' : 'lightblue'
             ctx.fill();
-            ctx.stroke();
         }
     }
 }
