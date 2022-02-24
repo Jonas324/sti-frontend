@@ -1,25 +1,35 @@
 const express = require("express")
 var favicon = require('serve-favicon')
 var path = require('path')
+var bodyParser = require('body-parser')
 
 const PORT = process.env.PORT || 3000
 
 const app = express()
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 app.use('/healthcheck', require('./routes/healthcheck.routes'));
 
 app.use(express.static('public'))
 
-app.get('/', function(req, res){
-    res.sendFile(__dirname + "/public/index.html")
-})
-
-app.post("/nextGeneration", function (req ,res){
-    console.log("hello")
+app.get("/healthcheck", function (req ,res){
     headers={"http_status":200, "cache-control":  "no-cache"}
-    body= nextGen(grid);
-    
+    body = nextGen(grid)
     res.set('Content-Type', 'application/json');
     res.status(200).send(body)
+ })
+
+ app.post("/nextgen", function (req ,res){
+    headers={"http_status":200, "cache-control":  "no-cache"}
+    res.set('Content-Type', 'application/json');
+    console.log("******************************************")
+    console.log(req.body)
+    
+    res.status(200).send(req.body)
  })
 
 app.listen(PORT, function(){

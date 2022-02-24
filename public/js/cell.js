@@ -3,8 +3,8 @@ const ctx = canvas.getContext('2d');
 
 const resolution = 10;
 
-canvas.width = 1520;
-canvas.height = 720;
+canvas.width = 400;
+canvas.height = 400;
 
 const COLS = canvas.width / resolution;
 const ROWS = canvas.height / resolution;
@@ -21,16 +21,26 @@ requestAnimationFrame(update);
 
 function update() {
 
-    render(grid);
-    grid = nextGenSub(grid)
-    requestAnimationFrame(update);
+    grid = nextGen(grid)
+    /* render(grid);
+    requestAnimationFrame(update); */
 
 }
 
 function nextGen(grid){
     var xhr = new XMLHttpRequest()
-    xhr.open("POST", "http://localhost:3000/nextGeneration")
-    xhr.send(grid)
+    //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.open("POST", "http://localhost:3000/nextgen", true)
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onload = function(){
+        console.log("Hello World")
+        console.log(this.response)
+        var data = JSON.parse(this.response)
+        /* createTable(data) */
+      }
+      console.log(JSON.stringify(grid))
+    xhr.send(JSON.stringify(grid))
+    
   }
 
 function nextGenSub(grid) {

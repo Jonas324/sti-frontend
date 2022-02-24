@@ -1,11 +1,11 @@
-function age(){
+function age(data){
   var xhr = new XMLHttpRequest()
-  xhr.open("POST", "http://localhost:3000/app")
+  xhr.open("GET", "/app")
   xhr.onload = function(){
     var data = JSON.parse(this.response)
     createTable(data)
   }
-  xhr.send()
+  xhr.send(data)
 }
 
 function createTable(data){
