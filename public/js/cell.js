@@ -43,6 +43,7 @@ function nextGen(grid){
     
   }
 
+
 function nextGenSub(grid) {
     const nextGen = grid.map(arr => [...arr]);
 
