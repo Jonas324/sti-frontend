@@ -3,9 +3,21 @@ var favicon = require('serve-favicon')
 var path = require('path')
 var bodyParser = require('body-parser')
 
+
 const PORT = process.env.PORT || 3000
 
 const app = express()
+
+let COLS = 0
+let ROWS = 0
+
+/* function buildGrid() {
+    return new Array(COLS).fill(null)
+    .map(() => new Array(ROWS).fill(null)
+    .map(() => Math.floor(Math.random() * 2)));
+}
+
+let grid = buildGrid(); */
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -28,8 +40,23 @@ app.get("/healthcheck", function (req ,res){
     res.set('Content-Type', 'application/json');
     console.log("******************************************")
     console.log(req.body)
+
+    COLS =  req.query.COLS
+    ROWS = req.query.ROWS
+
+    console.log(COLS)
+    console.log(ROWS)
+
+    grid =  JSON.parse(req.body)
+
+    console.log(grid)
+
+    let data = nextGen(grid)
+
+    console.log("**********")
+
     
-    res.status(200).send(req.body)
+    res.status(200).send(JSON.stringify(data))
  })
 
 app.listen(PORT, function(){
